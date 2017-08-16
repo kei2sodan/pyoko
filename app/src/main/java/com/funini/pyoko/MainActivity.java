@@ -4,20 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.funini.pyoko.synth.AndroidPlayer;
+import com.funini.pyoko.synth.FMAlgorithm;
 import com.funini.pyoko.synth.FMOperator;
-import com.funini.pyoko.synth.Operator;
-import com.funini.pyoko.synth.SinOperator;
 
 public class MainActivity extends Activity {
     AndroidPlayer player;
+    FMAlgorithm mAlgorithm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAlgorithm = new FMAlgorithm();
         setContentView(R.layout.activity_main);
-        Operator op = new SinOperator();
-        op.setHz(440);
-        player = new AndroidPlayer(op);
+        //mFMOperator.setHz(440);
+        player = new AndroidPlayer(mAlgorithm);
     }
 
     @Override
@@ -30,5 +30,13 @@ public class MainActivity extends Activity {
     protected void onStop() {
         super.onStop();
         player.stop();
+    }
+
+    public synchronized FMOperator getOperator(int i) {
+        return mAlgorithm.getOperator(i);
+    }
+
+    public synchronized FMAlgorithm getAlgorithm() {
+        return mAlgorithm;
     }
 }

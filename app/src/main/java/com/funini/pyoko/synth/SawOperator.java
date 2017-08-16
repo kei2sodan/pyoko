@@ -23,6 +23,6 @@ public class SawOperator extends Operator {
         if(mPhase >= 1){
             mPhase -= 1;
         }
-        mValue = mPhase * 2.0f - 1.0f;
+        mValue = (mPhase * 2.0f - 1.0f) * getVolume();
     }
 }

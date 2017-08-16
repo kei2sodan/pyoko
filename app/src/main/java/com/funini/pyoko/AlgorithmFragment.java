@@ -1,11 +1,14 @@
 package com.funini.pyoko;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ToggleButton;
+
+import com.funini.pyoko.synth.FMAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +17,9 @@ import java.util.List;
  * Created by kei2s
  */
 
-
-
 public class AlgorithmFragment extends Fragment implements View.OnClickListener {
-    List<ToggleButton> mAlgs = new ArrayList<ToggleButton>();
+    List<ToggleButton> mAlgs = new ArrayList<>();
+    FMAlgorithm mAlgorithm;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class AlgorithmFragment extends Fragment implements View.OnClickListener 
     }
 
     ToggleButton setupToggleButton(int rid){
-        ToggleButton ret = (ToggleButton)getActivity().findViewById(rid);
+        ToggleButton ret = (ToggleButton)(getView().findViewById(rid));
         return ret;
     }
 
@@ -44,12 +46,25 @@ public class AlgorithmFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         ToggleButton target = (ToggleButton)v;
-        for(ToggleButton b : mAlgs){
+        for(int i = 0; i < mAlgs.size(); i++){
+            ToggleButton b = mAlgs.get(i);
             if(b == target){
                 b.setChecked(true);
+                mAlgorithm.setAlgorithm(i);
             } else {
                 b.setChecked(false);
             }
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (!(context instanceof MainActivity)) {
+            throw new UnsupportedOperationException(
+                    "Unknown activity");
+        } else {
+            mAlgorithm = ((MainActivity)context).getAlgorithm();
         }
     }
 }

@@ -1,5 +1,9 @@
 package com.funini.pyoko.synth;
 
+import android.util.Log;
+
+import com.funini.pyoko.Consts;
+
 import java.util.Random;
 
 /**
@@ -20,6 +24,12 @@ public class NoiseOperator extends Operator {
 
     @Override
     public void next(float v) {
-        mValue = mRand.nextFloat();
+        mValue = mRand.nextFloat() * getVolume();
+    }
+
+    @Override
+    public synchronized void setVolume(float vol) {
+        super.setVolume(vol);
+        Log.e(Consts.TAG, "vol:" + getVolume());
     }
 }

@@ -62,7 +62,8 @@ public class AndroidPlayer {
 
     Runnable runnable = new Runnable(){
         public void run() {
-            while (!getStopFlag()) {
+            //while(thread != null){
+            while(!getStopFlag()){
                 for (int i = 0; i < mBufferSize; i++) {
                     float v = mOp.getValue();
                     S[i] = (short)(v * Short.MAX_VALUE);

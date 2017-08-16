@@ -7,4 +7,5 @@ package com.funini.pyoko;
 public class Consts {
     public static final String TAG = "Pyoko";
     public static int SAMPLING_RATE = 44100;
+    public static int N_OPERATORS = 4;
 }

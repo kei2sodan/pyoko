@@ -9,10 +9,18 @@ public class FMOperator extends Operator {
     Operator mSaw = new SawOperator();
     Operator mSquare = new SquareOperator();
     Operator mNoise = new NoiseOperator();
-    Operator mMod;
+    Operator mMod0, mMod1;
 
     public FMOperator(Operator mod){
-        mMod = mod;
+        mMod0 = mod;
+    }
+
+    public FMOperator(Operator mod0, Operator mod1){
+        mMod0 = mod0;
+        mMod1 = mod1;
+    }
+
+    public FMOperator(){
     }
 
 
@@ -34,7 +42,7 @@ public class FMOperator extends Operator {
         mSaw.next(stepRate);
         mSquare.next(stepRate);
         mNoise.next(stepRate);
-        float v = /*mSin.getValue() + */mSquare.getValue() + mNoise.getValue() + mSaw.getValue();
+        float v = /*mSin.getValue() + */ mSquare.getValue() + mNoise.getValue() + mSaw.getValue();
         mValue = v * 0.333f * getVolume();
     }
 
@@ -72,4 +80,5 @@ public class FMOperator extends Operator {
     public void setTotalLevel(float v) {
         setVolume(v);
     }
+
 }

@@ -28,5 +28,6 @@ public class SquareOperator extends Operator {
         } else {
             mValue = 0.5f;
         }
+        mValue *=  getVolume();
     }
 }

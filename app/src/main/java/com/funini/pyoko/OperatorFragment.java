@@ -1,12 +1,14 @@
 package com.funini.pyoko;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.funini.pyoko.synth.FMOperator;
 
@@ -37,7 +39,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     }
 
     SeekBar setupSeekBar(int rid){
-        SeekBar ret = (SeekBar)getActivity().findViewById(rid);
+        SeekBar ret = (SeekBar)(getView().findViewById(rid));
         ret.setOnSeekBarChangeListener(this);
         return ret;
     }
@@ -54,14 +56,15 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
         mSeekBarReleaseRate= setupSeekBar(R.id.sb_release_rate);
         mSeekBarSustainLevel= setupSeekBar(R.id.sb_sustain_level);
         mSeekBarTotalLevel= setupSeekBar(R.id.sb_total_level);
+        Log.e(Consts.TAG, "init operator fragment: ");
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         if(mOperator == null){
+            Log.e(Consts.TAG, "operator is null");
             return;
         }
-
         float v = (float)seekBar.getProgress() / seekBar.getMax();
         /*if(seekBar == mSeekBarSinLevel) {
             mOperator.setSinLevel(v);
@@ -72,6 +75,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
             mOperator.setSquareLevel(v);
         } else if (seekBar == mSeekBarNoiseLevel) {
             mOperator.setNoiseLevel(v);
+            Log.e(Consts.TAG, "setNoise:" + v + ", mOp: " + mOperator + "," + this);
         } else if(seekBar == mSeekBarAttackRate) {
             mOperator.setAttackRate(v);
         } else if(seekBar == mSeekBarDecayRate) {
@@ -97,5 +101,17 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (!(context instanceof MainActivity)) {
+            throw new UnsupportedOperationException(
+                    "Unknown activity");
+        } else {
+            setOperator(((MainActivity)context).getOperator(3));
+        }
+        Log.e(Consts.TAG, "init: " + this + ", getOperator" + mOperator);
     }
 }
