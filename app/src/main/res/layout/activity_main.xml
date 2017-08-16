@@ -7,11 +7,12 @@
     tools:context="com.funini.pyoko.MainActivity">
 
     <LinearLayout
+        android:id="@+id/operators"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
         android:orientation="horizontal">
-
+<!--
         <fragment
             android:id="@+id/op0"
             android:name="com.funini.pyoko.OperatorFragment"
@@ -43,6 +44,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1" />
+            -->
     </LinearLayout>
 
     <fragment

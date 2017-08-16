@@ -75,7 +75,6 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
             mOperator.setSquareLevel(v);
         } else if (seekBar == mSeekBarNoiseLevel) {
             mOperator.setNoiseLevel(v);
-            Log.e(Consts.TAG, "setNoise:" + v + ", mOp: " + mOperator + "," + this);
         } else if(seekBar == mSeekBarAttackRate) {
             mOperator.setAttackRate(v);
         } else if(seekBar == mSeekBarDecayRate) {
@@ -102,7 +101,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
-
+/*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -114,4 +113,5 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
         }
         Log.e(Consts.TAG, "init: " + this + ", getOperator" + mOperator);
     }
+    */
 }

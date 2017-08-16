@@ -7,7 +7,7 @@ import com.funini.pyoko.Consts;
  */
 
 public abstract class Operator {
-    volatile float mVolume = 1.0f;
+    volatile float mVolume = 0.0f;
     volatile float mHz;
     /* how many phase should it proceed for one step */
     volatile float mStep;

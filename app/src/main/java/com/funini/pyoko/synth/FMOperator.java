@@ -11,13 +11,18 @@ public class FMOperator extends Operator {
     Operator mNoise = new NoiseOperator();
     Operator mMod0, mMod1;
 
-    public FMOperator(Operator mod){
+    public void setMod(Operator mod){
         mMod0 = mod;
+        mMod1 = null;
     }
 
-    public FMOperator(Operator mod0, Operator mod1){
+    public void setMod(Operator mod0, Operator mod1){
         mMod0 = mod0;
         mMod1 = mod1;
+    }
+
+    public void setMod(){
+        mMod0 = mMod1 = null;
     }
 
     public FMOperator(){
@@ -38,7 +43,14 @@ public class FMOperator extends Operator {
 
 
     @Override
-    public void next(float stepRate) {
+    public void next(float _) {
+        float stepRate = 1.0f;
+        if(mMod0 != null) {
+            stepRate *= Math.pow(1.2, mMod0.getValue());
+            if (mMod1 != null){
+                stepRate *= mMod1.getValue();
+            }
+        }
         mSaw.next(stepRate);
         mSquare.next(stepRate);
         mNoise.next(stepRate);
