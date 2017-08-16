@@ -8,11 +8,11 @@ public class SinOperator extends Operator {
     float mPhase;
 
     public SinOperator(){
-        init();
+        noteOn();
     }
 
     @Override
-    public void init() {
+    public void noteOn() {
         mPhase = 0;
         next(1.0f);
     }

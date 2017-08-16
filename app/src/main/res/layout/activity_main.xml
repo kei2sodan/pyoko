@@ -61,5 +61,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="1dp" />
 
+    <fragment
+        android:id="@+id/sequencer"
+        android:name="com.funini.pyoko.SequencerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp" />
+
 </LinearLayout>
 

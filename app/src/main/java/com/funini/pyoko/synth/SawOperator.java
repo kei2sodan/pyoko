@@ -8,11 +8,11 @@ public class SawOperator extends Operator {
     float mPhase;
 
     public SawOperator(){
-        init();
+        noteOn();
     }
 
     @Override
-    public void init() {
+    public void noteOn() {
         mPhase = 0;
         next(1.0f);
     }
@@ -20,8 +20,11 @@ public class SawOperator extends Operator {
     @Override
     public void next(float stepRate) {
         mPhase += mStep * stepRate;
-        if(mPhase >= 1){
-            mPhase -= 1;
+        while(mPhase >= 1.0f){
+            mPhase -= 1.0f;
+        }
+        while(mPhase < 0){
+            mPhase += 1.0f;
         }
         mValue = (mPhase * 2.0f - 1.0f) * getVolume();
     }

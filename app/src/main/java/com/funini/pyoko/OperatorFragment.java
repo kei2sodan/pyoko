@@ -18,7 +18,6 @@ import com.funini.pyoko.synth.FMOperator;
 
 public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
     FMOperator mOperator;
-    //SeekBar mSeekBarSinLevel;
     SeekBar mSeekBarSawLevel;
     SeekBar mSeekBarSquareLevel;
     SeekBar mSeekBarNoiseLevel;
@@ -28,6 +27,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     SeekBar mSeekBarReleaseRate;
     SeekBar mSeekBarSustainLevel;
     SeekBar mSeekBarTotalLevel;
+    SeekBar mSeekBarFreqRatio;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     SeekBar setupSeekBar(int rid){
         SeekBar ret = (SeekBar)(getView().findViewById(rid));
         ret.setOnSeekBarChangeListener(this);
+        ret.setProgress(ret.getProgress());
         return ret;
     }
 
@@ -56,7 +57,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
         mSeekBarReleaseRate= setupSeekBar(R.id.sb_release_rate);
         mSeekBarSustainLevel= setupSeekBar(R.id.sb_sustain_level);
         mSeekBarTotalLevel= setupSeekBar(R.id.sb_total_level);
-        Log.e(Consts.TAG, "init operator fragment: ");
+        mSeekBarFreqRatio= setupSeekBar(R.id.sb_freq_ratio);
     }
 
     @Override
@@ -87,6 +88,8 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
             mOperator.setSustainLevel(v);
         } else if(seekBar == mSeekBarTotalLevel){
             mOperator.setTotalLevel(v);
+         } else if(seekBar == mSeekBarFreqRatio){
+            mOperator.setFreqRatio(v);
         } else {
             Log.w(Consts.TAG, "Unknown seekbar");
         }
@@ -101,17 +104,4 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
-/*
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (!(context instanceof MainActivity)) {
-            throw new UnsupportedOperationException(
-                    "Unknown activity");
-        } else {
-            setOperator(((MainActivity)context).getOperator(3));
-        }
-        Log.e(Consts.TAG, "init: " + this + ", getOperator" + mOperator);
-    }
-    */
 }

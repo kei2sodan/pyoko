@@ -8,11 +8,11 @@ public class SquareOperator extends Operator {
     float mPhase;
 
     public SquareOperator(){
-        init();
+        noteOn();
     }
 
     @Override
-    public void init() {
+    public void noteOn() {
         mPhase = 0;
         next(1.0f);
     }
@@ -20,14 +20,17 @@ public class SquareOperator extends Operator {
     @Override
     public void next(float stepRate) {
         mPhase += mStep * stepRate;
-        if(mPhase >= 1){
-            mPhase -= 1;
+        while(mPhase >= 1.0f){
+            mPhase -= 1.0f;
+        }
+        while(mPhase < 0){
+            mPhase += 1.0f;
         }
         if(mPhase < 0.5f){
             mValue = -0.5f;
         } else {
             mValue = 0.5f;
         }
-        mValue *=  getVolume();
+        mValue *= getVolume();
     }
 }

@@ -13,7 +13,7 @@
             android:id="@+id/sb_saw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:id="@+id/sb_square"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:id="@+id/sb_noise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:id="@+id/sb_attack_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:id="@+id/sb_decay_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:id="@+id/sb_sustain_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             android:id="@+id/sb_release_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +111,8 @@
             android:id="@+id/sb_sustain_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:progress="8"
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,14 +123,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <SeekBar
+            android:id="@+id/sb_freq_ratio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="4"
+            android:max="8" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Freq ratio" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
             android:id="@+id/sb_total_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="8" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Total level" />
     </FrameLayout>
-
 </LinearLayout>
