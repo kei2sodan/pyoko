@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffcccccc"
+    android:orientation="vertical"
+    tools:context="com.funini.pyoko.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/op0"
+            android:name="com.funini.pyoko.OperatorFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/op1"
+            android:name="com.funini.pyoko.OperatorFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/op2"
+            android:name="com.funini.pyoko.OperatorFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/op3"
+            android:name="com.funini.pyoko.OperatorFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/alg"
+        android:name="com.funini.pyoko.AlgorithmFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp" />
+
+    <fragment
+        android:id="@+id/keyboard"
+        android:name="com.funini.pyoko.KeyboardFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp" />
+
+</LinearLayout>
+

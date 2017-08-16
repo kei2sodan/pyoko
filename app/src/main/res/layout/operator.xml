@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_saw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saw level" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_square"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Square level" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_noise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Noise level" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_attack_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attack rate" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_decay_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Decay rate" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_sustain_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sustain rate" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_release_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Release rate" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_sustain_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sustain level" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SeekBar
+            android:id="@+id/sb_total_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total level" />
+    </FrameLayout>
+
+</LinearLayout>
