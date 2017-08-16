@@ -44,24 +44,24 @@ public abstract class Operator {
         calcStep();
     }
 
-    public synchronized float getHz() {
+    public float getHz() {
         return mHz;
     }
 
-    public synchronized void setVolume(float vol){
+    public void setVolume(float vol){
         mVolume = vol;
     }
 
-    public synchronized float getVolume(){
+    public float getVolume(){
         return mVolume;
     }
 
-    public synchronized void setFreqRatio(float v) {
+    public void setFreqRatio(float v) {
         mFreqRatio = (float)Math.pow(2.0, (v -  0.5) * 4);
         calcStep();
     }
 
-    public synchronized float getFreqRatio() {
+    public float getFreqRatio() {
         return mFreqRatio;
     }
 

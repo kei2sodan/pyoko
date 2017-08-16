@@ -25,6 +25,7 @@ public class FMOperator extends Operator {
     int mEnvelopCount = 0;
 
     float mEnvelop = 0;
+    float mFeedbackLevel = 0;
 
     enum EnvelopMode {
         OFF,
@@ -86,6 +87,7 @@ public class FMOperator extends Operator {
                 stepRate += mMod1.getValue();
             }
         }
+        stepRate += mFeedbackLevel * mValue;
         mSaw.next(stepRate);
         mSquare.next(stepRate);
         mNoise.next(stepRate);
@@ -111,7 +113,7 @@ public class FMOperator extends Operator {
                 break;
             case DECAY:
                 if(mDecayRate > 0 && ++mEnvelopCount < mDecayRate){
-                    mEnvelop = (1.0f - mSustainLevel) * (float)mEnvelopCount / mSustainRate + mSustainLevel;
+                    mEnvelop = (1.0f - mSustainLevel) * (float)mEnvelopCount / mDecayRate + mSustainLevel;
                 } else {
                     mEnvelopMode = EnvelopMode.SUSTAIN;
                     mEnvelopCount = 0;
@@ -142,6 +144,10 @@ public class FMOperator extends Operator {
                 mEnvelopCount = 0;
                 mEnvelop = 0.0f;
                 break;
+        }
+        if(mEnvelop < 0){
+            mEnvelop = 0;
+            assert false;
         }
     }
 
@@ -192,4 +198,9 @@ public class FMOperator extends Operator {
         mSquare.setFreqRatio(v);
         mNoise.setFreqRatio(v);
     }
+
+    public void setFeedbackLevel(float v) {
+        mFeedbackLevel = v;
+    }
+
 }

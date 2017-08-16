@@ -40,7 +40,7 @@ public class FMAlgorithm extends Operator {
 
 
     @Override
-    public synchronized void next(float stepRate) {
+    public void next(float stepRate) {
         for(FMOperator op: mOpList) {
             op.next();
         }

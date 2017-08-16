@@ -64,10 +64,12 @@ public class AndroidPlayer {
         public void run() {
             //while(thread != null){
             while(!getStopFlag()){
-                for (int i = 0; i < mBufferSize; i++) {
-                    float v = mOp.getValue();
-                    S[i] = (short)(v * Short.MAX_VALUE);
-                    mOp.next();
+                synchronized (mOp) {
+                    for (int i = 0; i < mBufferSize; i++) {
+                        float v = mOp.getValue();
+                        S[i] = (short) (v * Short.MAX_VALUE);
+                        mOp.next();
+                    }
                 }
                 track.write(S, 0, S.length);
             }
