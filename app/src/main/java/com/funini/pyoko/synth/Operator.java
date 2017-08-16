@@ -26,6 +26,10 @@ public abstract class Operator {
      */
     public abstract void next(float stepRate);
 
+    public void next(){
+        next(1.0f);
+    }
+
     public void setHz(float hz) {
         mHz = hz;
         mStep = (float)hz / Consts.SAMPLING_RATE;
