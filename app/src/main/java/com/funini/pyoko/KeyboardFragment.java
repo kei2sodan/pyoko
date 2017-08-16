@@ -50,11 +50,12 @@ public class KeyboardFragment extends Fragment implements SeekBar.OnSeekBarChang
     }
 
     public void onStartTrackingTouch(SeekBar seekBar) {
-        mOperator.setVolume(1.0f);
+
+        mOperator.noteOn();
     }
 
     public void onStopTrackingTouch(SeekBar seekBar) {
-        mOperator.setVolume(0.0f);
+        mOperator.noteOff();
     }
 
     @Override

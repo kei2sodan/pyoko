@@ -8,11 +8,11 @@ public class SawOperator extends Operator {
     float mPhase;
 
     public SawOperator(){
-        init();
+        noteOn();
     }
 
     @Override
-    public void init() {
+    public void noteOn() {
         mPhase = 0;
         next(1.0f);
     }

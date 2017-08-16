@@ -14,11 +14,11 @@ public class NoiseOperator extends Operator {
     Random mRand = new Random();
 
     public NoiseOperator() {
-        init();
+        noteOn();
     }
 
     @Override
-    public void init() {
+    public void noteOn() {
         mValue = 0;
     }
 

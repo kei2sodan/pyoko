@@ -8,12 +8,20 @@ import com.funini.pyoko.Consts;
 
 public abstract class Operator {
     volatile float mVolume = 0.0f;
-    volatile float mHz;
+    float mHz;
+    float mFreqRatio = 1.0f;
     /* how many phase should it proceed for one step */
-    volatile float mStep;
-    volatile float mValue;
+    float mStep;
+    float mValue;
+    boolean mNoteOn = false;
 
-    public abstract void init();
+    public void noteOn(){
+        mNoteOn = true;
+    }
+
+    public void noteOff(){
+        mNoteOn = false;
+    }
 
     /**
      * @return ope value in the range of 0 < val < 1
@@ -31,9 +39,13 @@ public abstract class Operator {
         next(1.0f);
     }
 
-    public void setHz(float hz) {
+    public synchronized void setHz(float hz) {
         mHz = hz;
-        mStep = (float)hz / Consts.SAMPLING_RATE;
+        calcStep();
+    }
+
+    public synchronized float getHz() {
+        return mHz;
     }
 
     public synchronized void setVolume(float vol){
@@ -42,5 +54,18 @@ public abstract class Operator {
 
     public synchronized float getVolume(){
         return mVolume;
+    }
+
+    public synchronized void setFreqRatio(float v) {
+        mFreqRatio = (float)Math.pow(2.0, (v -  0.5) * 4);
+        calcStep();
+    }
+
+    public synchronized float getFreqRatio() {
+        return mFreqRatio;
+    }
+
+    protected void calcStep(){
+        mStep = getHz() * getFreqRatio() / Consts.SAMPLING_RATE;
     }
 }

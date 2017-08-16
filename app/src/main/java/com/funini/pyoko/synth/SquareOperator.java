@@ -8,11 +8,11 @@ public class SquareOperator extends Operator {
     float mPhase;
 
     public SquareOperator(){
-        init();
+        noteOn();
     }
 
     @Override
-    public void init() {
+    public void noteOn() {
         mPhase = 0;
         next(1.0f);
     }
