@@ -18,6 +18,7 @@ import com.funini.pyoko.synth.FMOperator;
 
 public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
     FMOperator mOperator;
+    SeekBar mSeekBarSinLevel;
     SeekBar mSeekBarSawLevel;
     SeekBar mSeekBarSquareLevel;
     SeekBar mSeekBarNoiseLevel;
@@ -28,6 +29,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
     SeekBar mSeekBarSustainLevel;
     SeekBar mSeekBarTotalLevel;
     SeekBar mSeekBarFreqRatio;
+    SeekBar mSeekBarFreqOffset;
     SeekBar mSeekBarFeedbackLevel;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +50,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
 
     public void onStart() {
         super.onStart();
-        //mSeekBarSinLevel= setupSeekBar(R.id.sb_sin);
+        mSeekBarSinLevel= setupSeekBar(R.id.sb_sin);
         mSeekBarSawLevel = setupSeekBar(R.id.sb_saw);
         mSeekBarSquareLevel = setupSeekBar(R.id.sb_square);
         mSeekBarNoiseLevel = setupSeekBar(R.id.sb_noise);
@@ -59,6 +61,7 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
         mSeekBarSustainLevel = setupSeekBar(R.id.sb_sustain_level);
         mSeekBarTotalLevel = setupSeekBar(R.id.sb_total_level);
         mSeekBarFreqRatio = setupSeekBar(R.id.sb_freq_ratio);
+        mSeekBarFreqOffset = setupSeekBar(R.id.sb_freq_offset);
         mSeekBarFeedbackLevel = setupSeekBar(R.id.sb_feedback_level);
     }
 
@@ -69,10 +72,9 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
             return;
         }
         float v = (float) seekBar.getProgress() / seekBar.getMax();
-        /*if(seekBar == mSeekBarSinLevel) {
+        if(seekBar == mSeekBarSinLevel) {
             mOperator.setSinLevel(v);
-        } else*/
-        if (seekBar == mSeekBarSawLevel) {
+        } else if (seekBar == mSeekBarSawLevel) {
             mOperator.setSawLevel(v);
         } else if (seekBar == mSeekBarSquareLevel) {
             mOperator.setSquareLevel(v);
@@ -92,6 +94,8 @@ public class OperatorFragment extends Fragment implements SeekBar.OnSeekBarChang
             mOperator.setTotalLevel(v);
         } else if (seekBar == mSeekBarFreqRatio) {
             mOperator.setFreqRatio(v);
+        } else if (seekBar == mSeekBarFreqOffset) {
+            mOperator.setFreqOffset(v);
         } else if (seekBar == mSeekBarFeedbackLevel) {
             mOperator.setFeedbackLevel(v);
         } else {

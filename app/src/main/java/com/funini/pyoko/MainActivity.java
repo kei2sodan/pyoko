@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.funini.pyoko.synth.AndroidPlayer;
 import com.funini.pyoko.synth.FMAlgorithm;
 import com.funini.pyoko.synth.FMOperator;
-import com.funini.pyoko.synth.Operator;
 
 public class MainActivity extends Activity {
     AndroidPlayer player;
@@ -22,7 +21,11 @@ public class MainActivity extends Activity {
         for(int i = 0; i < Consts.N_OPERATORS; i++) {
             OperatorFragment fragment = new OperatorFragment();
             fragment.setOperator(mAlgorithm.getOperator(i));
-            transaction.add(R.id.operators, fragment);
+            if(i < 2) {
+                transaction.add(R.id.operators0, fragment);
+            } else {
+                transaction.add(R.id.operators1, fragment);
+            }
         }
         transaction.commit();
         player = new AndroidPlayer(mAlgorithm);

@@ -10,6 +10,7 @@ public abstract class Operator {
     volatile float mVolume = 0.0f;
     float mHz;
     float mFreqRatio = 1.0f;
+    float mFreqOffset = 1.0f;
     /* how many phase should it proceed for one step */
     float mStep;
     float mValue;
@@ -66,6 +67,15 @@ public abstract class Operator {
     }
 
     protected void calcStep(){
-        mStep = getHz() * getFreqRatio() / Consts.SAMPLING_RATE;
+        mStep = (getHz() - getFreqOffset()) * getFreqRatio() / Consts.SAMPLING_RATE;
+    }
+
+    public void setFreqOffset(float v) {
+        mFreqOffset = v * 4.0f - 2.0f;
+        calcStep();
+    }
+
+    public float getFreqOffset() {
+        return mFreqOffset;
     }
 }

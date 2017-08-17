@@ -7,12 +7,13 @@ import com.funini.pyoko.Consts;
  */
 
 public class FMOperator extends Operator {
+    Operator mSin = new SinOperator();
     Operator mSaw = new SawOperator();
     Operator mSquare = new SquareOperator();
     Operator mNoise = new NoiseOperator();
     Operator mMod0, mMod1;
-    public static float MAX_ATTACK_RATE_SEC = 0.5f;
-    public static float MAX_DECAY_RATE_SEC = 0.5f;
+    public static float MAX_ATTACK_RATE_SEC = 0.2f;
+    public static float MAX_DECAY_RATE_SEC = 0.8f;
     public static float MAX_SUSTAIN_RATE_SEC = 10f;
     public static float MAX_RELEASE_RATE_SEC = 0.5f;
 
@@ -71,6 +72,7 @@ public class FMOperator extends Operator {
     }
 
     public void setHz(float hz){
+        mSin.setHz(hz);
         mSaw.setHz(hz);
         mSquare.setHz(hz);
         mNoise.setHz(hz);
@@ -88,14 +90,15 @@ public class FMOperator extends Operator {
             }
         }
         stepRate += mFeedbackLevel * mValue;
+        mSin.next(stepRate);
         mSaw.next(stepRate);
         mSquare.next(stepRate);
         mNoise.next(stepRate);
-        float r = (mSquare.getVolume() + mSaw.getVolume() + mNoise.getVolume());
+        float r = (mSin.getVolume() + mSquare.getVolume() + mSaw.getVolume() + mNoise.getVolume());
         if(r == 0){
             mValue = 0;
         } else {
-            float v = /*mSin.getValue() + */ mSquare.getValue() + mNoise.getValue() + mSaw.getValue();
+            float v = mSin.getValue() + mSquare.getValue() + mNoise.getValue() + mSaw.getValue();
             mValue = v * getVolume() * getEnvelop() / r;
         }
     }
@@ -113,7 +116,7 @@ public class FMOperator extends Operator {
                 break;
             case DECAY:
                 if(mDecayRate > 0 && ++mEnvelopCount < mDecayRate){
-                    mEnvelop = (1.0f - mSustainLevel) * (float)mEnvelopCount / mDecayRate + mSustainLevel;
+                    mEnvelop = 1.0f - (1.0f - mSustainLevel) * (float)mEnvelopCount / mDecayRate;
                 } else {
                     mEnvelopMode = EnvelopMode.SUSTAIN;
                     mEnvelopCount = 0;
@@ -152,8 +155,11 @@ public class FMOperator extends Operator {
     }
 
     private float getEnvelop() {
-
         return mEnvelop;
+    }
+
+    public void setSinLevel(float v) {
+        mSin.setVolume(v);
     }
 
     public void setSawLevel(float v) {
@@ -194,9 +200,17 @@ public class FMOperator extends Operator {
 
     @Override
     public void setFreqRatio(float v) {
+        mSin.setFreqRatio(v);
         mSaw.setFreqRatio(v);
         mSquare.setFreqRatio(v);
         mNoise.setFreqRatio(v);
+    }
+
+    public void setFreqOffset(float v) {
+        mSin.setFreqOffset(v);
+        mSaw.setFreqOffset(v);
+        mSquare.setFreqOffset(v);
+        mNoise.setFreqOffset(v);
     }
 
     public void setFeedbackLevel(float v) {

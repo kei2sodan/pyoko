@@ -7,44 +7,18 @@
     tools:context="com.funini.pyoko.MainActivity">
 
     <LinearLayout
-        android:id="@+id/operators"
+        android:id="@+id/operators0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
         android:orientation="horizontal">
-<!--
-        <fragment
-            android:id="@+id/op0"
-            android:name="com.funini.pyoko.OperatorFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1" />
-
-        <fragment
-            android:id="@+id/op1"
-            android:name="com.funini.pyoko.OperatorFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1" />
-
-        <fragment
-            android:id="@+id/op2"
-            android:name="com.funini.pyoko.OperatorFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1" />
-
-        <fragment
-            android:id="@+id/op3"
-            android:name="com.funini.pyoko.OperatorFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="1" />
-            -->
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/operators1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:orientation="horizontal">
     </LinearLayout>
 
     <fragment
