@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <SeekBar
-            android:id="@+id/sb_freq"
+            android:id="@+id/sb_keys"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="100" />
+            android:max="7" />
         <TextView
+            android:id="@+id/tv_key_freq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Frequency" />
+            android:text="Ribon Controller" />
     </FrameLayout>
 </LinearLayout>

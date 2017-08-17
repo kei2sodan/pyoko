@@ -6,5 +6,8 @@
     <string name="alg0">4*3*2*1</string>
     <string name="alg1">(4+3)*2*1</string>
     <string name="alg2">(4+3*2)*1</string>
-    <string name="alg3">(4*3+2)*1</string>
+    <string name="alg3">4*3+2*1</string>
+    <string name="alg4">4*(3+2+1)</string>
+    <string name="alg5">4*3+2+1</string>
+    <string name="alg6">4+3+2+1</string>
 </resources>

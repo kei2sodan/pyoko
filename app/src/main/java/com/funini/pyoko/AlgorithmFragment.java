@@ -37,6 +37,9 @@ public class AlgorithmFragment extends Fragment implements View.OnClickListener 
         mAlgs.add(setupToggleButton(R.id.alg1));
         mAlgs.add(setupToggleButton(R.id.alg2));
         mAlgs.add(setupToggleButton(R.id.alg3));
+        mAlgs.add(setupToggleButton(R.id.alg4));
+        mAlgs.add(setupToggleButton(R.id.alg5));
+        mAlgs.add(setupToggleButton(R.id.alg6));
         for(ToggleButton b : mAlgs){
             b.setOnClickListener(this);
         }

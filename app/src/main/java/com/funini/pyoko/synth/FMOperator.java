@@ -14,7 +14,7 @@ public class FMOperator extends Operator {
     Operator mMod0, mMod1;
     public static float MAX_ATTACK_RATE_SEC = 0.2f;
     public static float MAX_DECAY_RATE_SEC = 0.8f;
-    public static float MAX_SUSTAIN_RATE_SEC = 10f;
+    public static float MAX_SUSTAIN_RATE_SEC = 5f;
     public static float MAX_RELEASE_RATE_SEC = 0.5f;
 
     int mAttackRate = 0; /* how many samples does it take to reach the attack (max: 0.1 sec) */

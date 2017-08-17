@@ -60,6 +60,7 @@ public class AndroidPlayer {
         track.play();
     }
 
+    float mV = 0;
     Runnable runnable = new Runnable(){
         public void run() {
             //while(thread != null){
@@ -67,7 +68,8 @@ public class AndroidPlayer {
                 synchronized (mOp) {
                     for (int i = 0; i < mBufferSize; i++) {
                         float v = mOp.getValue();
-                        S[i] = (short) (v * Short.MAX_VALUE);
+                        mV = mV * 0.9f + v * 0.1f;
+                        S[i] = (short) ( mV * Short.MAX_VALUE / 2);
                         mOp.next();
                     }
                 }

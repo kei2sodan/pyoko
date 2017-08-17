@@ -1,5 +1,8 @@
 package com.funini.pyoko.synth;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.funini.pyoko.Consts.N_OPERATORS;
 
 /**
@@ -9,6 +12,7 @@ import static com.funini.pyoko.Consts.N_OPERATORS;
 public class FMAlgorithm extends Operator {
 
     FMOperator[] mOpList = new FMOperator[N_OPERATORS];
+    List<FMOperator> mOpOutputs = new ArrayList<FMOperator>();
 
     public FMAlgorithm(){
         for(int i = 0; i < N_OPERATORS; i++){
@@ -44,34 +48,72 @@ public class FMAlgorithm extends Operator {
         for(FMOperator op: mOpList) {
             op.next();
         }
-        mValue = mOpList[N_OPERATORS-1].getValue();
+        mValue = 0;
+        for(FMOperator op: mOpOutputs) {
+            mValue += op.getValue();
+        }
+        mValue /=    mOpOutputs.size();
     }
 
     public void setAlgorithm(int alg) {
+        mOpOutputs.clear();
         switch(alg){
             case 0:
-                mOpList[3].setMod(mOpList[2]);
-                mOpList[2].setMod(mOpList[1]);
-                mOpList[1].setMod(mOpList[0]);
-                mOpList[0].setMod();
+                mOpOutputs.add(mOpList[0]);
+                mOpList[0].setMod(mOpList[1]);
+                mOpList[1].setMod(mOpList[2]);
+                mOpList[2].setMod(mOpList[3]);
+                mOpList[3].setMod();
                 break;
             case 1:
-                mOpList[3].setMod(mOpList[2]);
-                mOpList[2].setMod(mOpList[1], mOpList[0]);
-                mOpList[1].setMod();
-                mOpList[0].setMod();
+                mOpOutputs.add(mOpList[0]);
+                mOpList[0].setMod(mOpList[1]);
+                mOpList[1].setMod(mOpList[2], mOpList[3]);
+                mOpList[2].setMod();
+                mOpList[3].setMod();
                 break;
             case 2:
-                mOpList[3].setMod(mOpList[2], mOpList[0]);
-                mOpList[2].setMod(mOpList[1]);
-                mOpList[1].setMod();
-                mOpList[0].setMod();
+                mOpOutputs.add(mOpList[0]);
+                mOpList[0].setMod(mOpList[1], mOpList[3]);
+                mOpList[1].setMod(mOpList[2]);
+                mOpList[2].setMod();
+                mOpList[3].setMod();
                 break;
             case 3:
-                mOpList[3].setMod(mOpList[2], mOpList[1]);
-                mOpList[2].setMod();
-                mOpList[1].setMod(mOpList[0]);
+                mOpOutputs.add(mOpList[0]);
+                mOpOutputs.add(mOpList[2]);
+                mOpList[0].setMod(mOpList[1]);
+                mOpList[1].setMod();
+                mOpList[2].setMod(mOpList[3]);
+                mOpList[3].setMod();
+                break;
+            case 4:
+                mOpOutputs.add(mOpList[0]);
+                mOpOutputs.add(mOpList[1]);
+                mOpOutputs.add(mOpList[2]);
+                mOpList[0].setMod(mOpList[3]);
+                mOpList[1].setMod(mOpList[3]);
+                mOpList[2].setMod(mOpList[3]);
+                mOpList[3].setMod();
+                break;
+            case 5:
+                mOpOutputs.add(mOpList[0]);
+                mOpOutputs.add(mOpList[1]);
+                mOpOutputs.add(mOpList[2]);
                 mOpList[0].setMod();
+                mOpList[1].setMod();
+                mOpList[2].setMod(mOpList[3]);
+                mOpList[3].setMod();
+                break;
+            case 6:
+                mOpOutputs.add(mOpList[0]);
+                mOpOutputs.add(mOpList[1]);
+                mOpOutputs.add(mOpList[2]);
+                mOpOutputs.add(mOpList[3]);
+                mOpList[0].setMod();
+                mOpList[1].setMod();
+                mOpList[2].setMod();
+                mOpList[3].setMod();
                 break;
         }
 
