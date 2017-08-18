@@ -3,8 +3,10 @@ package com.funini.pyoko.synth;
 import android.media.AudioAttributes;
 import android.media.AudioFormat;
 import android.media.AudioTrack;
+import android.util.Log;
 
 import com.funini.pyoko.Consts;
+import com.funini.pyoko.PanoramaPlayer;
 
 /**
  * Created by Kei on 2017/08/16.
@@ -16,6 +18,7 @@ public class AndroidPlayer {
     private short[] S;
     Operator mOp;
     Thread thread;
+    PanoramaPlayer mMusic = new PanoramaPlayer();
 
     public AndroidPlayer(Operator op){
         mOp = op;
@@ -63,10 +66,19 @@ public class AndroidPlayer {
     float mV = 0;
     Runnable runnable = new Runnable(){
         public void run() {
-            //while(thread != null){
+            mMusic.init();
             while(!getStopFlag()){
                 synchronized (mOp) {
                     for (int i = 0; i < mBufferSize; i++) {
+                        if(mMusic.noteOn()){
+                            Log.e(Consts.TAG, "noteOn, hz:" + mMusic.getFreq());
+                            mOp.setHz(mMusic.getFreq());
+                            mOp.noteOn();
+                        }
+                        if(mMusic.noteOff()){
+                            mOp.noteOff();
+                        }
+                        mMusic.next();
                         float v = mOp.getValue();
                         mV = mV * 0.9f + v * 0.1f;
                         S[i] = (short) ( mV * Short.MAX_VALUE / 2);
@@ -85,4 +97,9 @@ public class AndroidPlayer {
     protected synchronized boolean getStopFlag(){
         return thread == null;
     }
+
+    public synchronized void play(){
+        mMusic.init();
+    }
+
 }

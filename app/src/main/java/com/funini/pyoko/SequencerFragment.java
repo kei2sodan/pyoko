@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 
+import com.funini.pyoko.synth.AndroidPlayer;
 import com.funini.pyoko.synth.Operator;
 
 /**
@@ -17,39 +18,40 @@ import com.funini.pyoko.synth.Operator;
  */
 public class SequencerFragment extends Fragment implements Button.OnClickListener {
     Button mButton;
-    Operator mOperator;
+    //Operator mOperator;
+    AndroidPlayer mAndroidPlayer;
 
     @Override
     public void onClick(View view) {
-        new Player().start();
+        mAndroidPlayer.play();
+        //new Player().start();
     }
 
-    //Handler mHandler = new Handler();
-    class Player extends Thread {
-        float[] SCORE = {523.251f, 659.255f, 587.330f, 391.995f};
-
-        private void playOneNote(float hz){
-            mOperator.setHz(hz);
-            mOperator.noteOn();
-            sleep(400);
-            mOperator.noteOff();
-            sleep(100);
-        }
-
-        void sleep(int ms){
-            try {
-                Thread.sleep(ms);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        public void run(){
-            for(float hz : SCORE){
-                playOneNote(hz);
-            }
-        }
-
-    }
+//    class Player extends Thread {
+//        float[] SCORE = {523.251f, 659.255f, 587.330f, 391.995f};
+//
+//        private void playOneNote(float hz){
+//            mOperator.setHz(hz);
+//            mOperator.noteOn();
+//            sleep(400);
+//            mOperator.noteOff();
+//            sleep(100);
+//        }
+//
+//        void sleep(int ms){
+//            try {
+//                Thread.sleep(ms);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        public void run(){
+//            for(float hz : SCORE){
+//                playOneNote(hz);
+//            }
+//        }
+//
+//    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class SequencerFragment extends Fragment implements Button.OnClickListene
             throw new UnsupportedOperationException(
                     "Unknown activity");
         } else {
-            mOperator = ((MainActivity)context).getAlgorithm();
+            mAndroidPlayer = ((MainActivity)context).getAndroidPlayer();
         }
     }
 }

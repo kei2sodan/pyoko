@@ -9,13 +9,14 @@ import com.funini.pyoko.synth.FMAlgorithm;
 import com.funini.pyoko.synth.FMOperator;
 
 public class MainActivity extends Activity {
-    AndroidPlayer player;
+    AndroidPlayer mAndroidPlayer;
     FMAlgorithm mAlgorithm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAlgorithm = new FMAlgorithm();
+        mAndroidPlayer = new AndroidPlayer(mAlgorithm);
         setContentView(R.layout.activity_main);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         for(int i = 0; i < Consts.N_OPERATORS; i++) {
@@ -28,19 +29,18 @@ public class MainActivity extends Activity {
             }
         }
         transaction.commit();
-        player = new AndroidPlayer(mAlgorithm);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        player.start();
+        mAndroidPlayer.start();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        player.stop();
+        mAndroidPlayer.stop();
     }
 
     public synchronized FMOperator getOperator(int i) {
@@ -49,5 +49,9 @@ public class MainActivity extends Activity {
 
     public synchronized FMAlgorithm getAlgorithm() {
         return mAlgorithm;
+    }
+
+    public AndroidPlayer getAndroidPlayer() {
+        return mAndroidPlayer;
     }
 }
