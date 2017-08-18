@@ -52,7 +52,7 @@ public class FMAlgorithm extends Operator {
         for(FMOperator op: mOpOutputs) {
             mValue += op.getValue();
         }
-        mValue /=    mOpOutputs.size();
+        mValue /= mOpOutputs.size();
     }
 
     public void setAlgorithm(int alg) {
